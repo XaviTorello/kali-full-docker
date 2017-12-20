@@ -4,6 +4,8 @@ It provides a Kali Linux container with the latest full metapackage pre-installe
 
 Integrated with docker-compose and standalone builds
 
+Be patient, this will install all Kali tools (just for the first install, at image generation time). Final image size `~10GB`.
+
 ## Usage
 
 Just launch the container using our simple bash compose handler:
