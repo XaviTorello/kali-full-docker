@@ -32,4 +32,7 @@ RUN echo MaxCircuitDirtiness 10 >> /etc/tor/torrc
 # Tor start at init
 RUN update-rc.d tor enable
 
-CMD ["/bin/bash"]
+# Welcome message
+RUN echo "echo 'Kali full container!\n\n- If you need proxychains over Tor just activate tor service with:\n$ service tor start\n'" >> /etc/profile
+
+CMD ["/bin/bash", "--init-file", "/etc/profile"]
