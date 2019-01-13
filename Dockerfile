@@ -20,12 +20,11 @@ RUN chmod +x /usr/bin/ngrok
 
 # virtualenv config
 RUN pip install virtualenvwrapper
-ENV WORKON_HOME $HOME/.virtualenvs
-ENV PROJECT_HOME $HOME/projects
-RUN mkdir $HOME/projects
-ENV VIRTUALENVWRAPPER_SCRIPT /usr/local/bin/virtualenvwrapper.sh
+RUN echo 'export WORKON_HOME=$HOME/.virtualenvs' >> /etc/profile
+RUN echo 'export PROJECT_HOME=$HOME/projects' >> /etc/profile && mkdir /root/projects
+RUN echo 'export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh' >> /etc/profile
 RUN bash /usr/local/bin/virtualenvwrapper.sh
-RUN echo "source /usr/local/bin/virtualenvwrapper.sh > /dev/null" >> /etc/profile
+RUN echo 'source /usr/local/bin/virtualenvwrapper.sh' >> /etc/profile
 
 # Tor refresh every 5 requests
 RUN echo MaxCircuitDirtiness 10 >> /etc/tor/torrc
