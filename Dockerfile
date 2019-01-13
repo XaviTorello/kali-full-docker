@@ -10,7 +10,7 @@ RUN apt-get clean
 RUN apt-get update -y
 RUN apt-get install -y software-properties-common && apt-get update -y
 RUN apt-get install -y kali-linux-full --fix-missing
-RUN apt-get install -y git colordiff colortail unzip vim tmux xterm zsh curl telnet strace ltrace tmate less build-essential wget python3-setuptools python3-pip
+RUN apt-get install -y git colordiff colortail unzip vim tmux xterm zsh curl telnet strace ltrace tmate less build-essential wget python3-setuptools python3-pip tor proxychains
 RUN updatedb
 
 # virtualenv config
@@ -21,5 +21,10 @@ RUN mkdir $HOME/projects
 ENV VIRTUALENVWRAPPER_SCRIPT /usr/local/bin/virtualenvwrapper.sh
 RUN bash /usr/local/bin/virtualenvwrapper.sh
 RUN echo "source /usr/local/bin/virtualenvwrapper.sh > /dev/null" >> /etc/profile
+
+# Tor refresh every 5 requests
+RUN echo MaxCircuitDirtiness 10 >> /etc/tor/torrc
+# Tor start at init
+RUN update-rc.d tor enable
 
 CMD ["/bin/bash"]
