@@ -14,6 +14,10 @@ RUN apt-get install -y git colordiff colortail unzip vim tmux xterm zsh curl tel
 RUN git clone https://github.com/danielmiessler/SecLists /usr/share/seclists
 RUN updatedb
 
+# ngrok
+RUN curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip | gunzip - > /usr/bin/ngrok
+RUN chmod +x /usr/bin/ngrok
+
 # virtualenv config
 RUN pip install virtualenvwrapper
 ENV WORKON_HOME $HOME/.virtualenvs
