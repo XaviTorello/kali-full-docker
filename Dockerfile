@@ -30,6 +30,8 @@ RUN echo 'source /usr/local/bin/virtualenvwrapper.sh' >> /etc/profile
 RUN echo MaxCircuitDirtiness 10 >> /etc/tor/torrc
 # Tor start at init
 RUN update-rc.d tor enable
+# Use random proxy chains
+RUN sed -i 's/^strict_chain/#strict_chain/g;s/^#random_chain/random_chain/g' /etc/proxychains.conf
 
 # Welcome message
 RUN echo "echo 'Kali full container!\n\n- If you need proxychains over Tor just activate tor service with:\n$ service tor start\n'" >> /etc/profile
