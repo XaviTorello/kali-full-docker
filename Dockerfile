@@ -10,6 +10,7 @@ RUN apt-get clean
 RUN apt-get update -y
 RUN apt-get install -y software-properties-common && apt-get update -y
 RUN apt-get install -y kali-linux-full --fix-missing
+RUN git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && echo source ~/.oh-my-git/prompt.sh >> ~/.profile
 RUN apt-get install -y git colordiff colortail unzip vim tmux xterm zsh curl telnet strace ltrace tmate less build-essential wget python3-setuptools python3-pip tor proxychains zstd net-tools bash-completion
 RUN git clone https://github.com/danielmiessler/SecLists /usr/share/seclists
 RUN updatedb
