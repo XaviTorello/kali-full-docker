@@ -10,8 +10,13 @@ RUN apt-get clean
 RUN apt-get update -y
 RUN apt-get install -y software-properties-common && apt-get update -y
 RUN apt-get install -y kali-linux-full --fix-missing
-RUN apt-get install -y git colordiff colortail unzip vim tmux xterm zsh curl telnet strace ltrace tmate less build-essential wget python3-setuptools python3-pip tor proxychains zstd
+
+# secLists!
 RUN git clone https://github.com/danielmiessler/SecLists /usr/share/seclists
+
+# Some system tools
+RUN git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && echo source ~/.oh-my-git/prompt.sh >> /etc/profile
+RUN apt-get install -y git colordiff colortail unzip vim tmux xterm zsh curl telnet strace ltrace tmate less build-essential wget python3-setuptools python3-pip tor proxychains proxychains4 zstd net-tools bash-completion iputils-tracepath
 RUN updatedb
 
 # ngrok
@@ -30,8 +35,10 @@ RUN echo 'source /usr/local/bin/virtualenvwrapper.sh' >> /etc/profile
 RUN echo MaxCircuitDirtiness 10 >> /etc/tor/torrc
 # Tor start at init
 RUN update-rc.d tor enable
-# Use random proxy chains
+
+# Use random proxy chains / round_robin_chain for pc4
 RUN sed -i 's/^strict_chain/#strict_chain/g;s/^#random_chain/random_chain/g' /etc/proxychains.conf
+RUN sed -i 's/^strict_chain/#strict_chain/g;s/^round_robin_chain/round_robin_chain/g' /etc/proxychains4.conf
 
 # Welcome message
 RUN echo "echo 'Kali full container!\n\n- If you need proxychains over Tor just activate tor service with:\n$ service tor start\n'" >> /etc/profile
