@@ -9,7 +9,7 @@ Be patient, this will install all Kali tools (just for the first install, at ima
 ## Tools
 
 - Kali full metapackage will ~all available tools
-- `Tor` service and `proxychains`
+- `Tor` service, `proxychains` and `proxychains-ng` (aka `proxychains2`)
   - service not started by default
     - `service tor start`
   - configured to provide a new IP every 10 seconds
@@ -19,14 +19,19 @@ Be patient, this will install all Kali tools (just for the first install, at ima
 - python virtualenvs via `virtualenvwrapper`
   - projects placed at /`root/projects`
 - base packages
-  - wget, curl, telnet, git
+  - wget, curl, telnet, git, iputils-tracepath, net-tools
   - build-essentials
   - tmux, tmate
   - xterm, zsh
   - zstd
   - ltrace, strace
   - vim, less, colordiff, colortail
+  - strace ltrace
   - unzip, unrar
+  - python3-setuptools python3-pip
+  - bash-completion
+  - oh-my-git integration
+
   
 ## Usage
 
