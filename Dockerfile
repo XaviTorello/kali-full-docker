@@ -5,11 +5,8 @@ MAINTAINER Xavi Torelló <info@xaviertorello.cat>
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM xterm-256color
 
-RUN rm -fR /var/lib/apt/
-RUN apt-get clean
-RUN apt-get update -y
-RUN apt-get install -y software-properties-common && apt-get update -y
-RUN apt-get install -y kali-linux-full --fix-missing
+# Install Kali Full
+RUN rm -fR /var/lib/apt/ && apt-get clean && apt-get update -y && apt-get install -y software-properties-common kali-linux-full --fix-missing
 
 # secLists!
 RUN git clone https://github.com/danielmiessler/SecLists /usr/share/seclists
