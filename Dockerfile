@@ -27,6 +27,9 @@ RUN git clone https://github.com/andresriancho/w3af.git /opt/w3af && apt-get ins
 RUN curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip | gunzip - > /usr/bin/ngrok
 RUN chmod +x /usr/bin/ngrok
 
+# code-server
+RUN mkdir -p /opt/code-server && curl -Ls https://api.github.com/repos/codercom/code-server/releases/latest  | grep "browser_download_url.*linux" | cut -d ":" -f 2,3 | tr -d \"  | xargs curl -Ls | tar xz -C /opt/code-server --strip 1 && export PATH=/opt/code-server:$PATH >> /etc/profile
+
 # virtualenv config
 RUN pip install virtualenvwrapper
 RUN echo 'export WORKON_HOME=$HOME/.virtualenvs' >> /etc/profile
