@@ -22,6 +22,9 @@ RUN updatedb
 # nodejs, npm and yarn
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - ; apt-get install -y nodejs npm yarnpkg
 
+# w3af
+RUN git clone https://github.com/andresriancho/w3af.git /opt/w3af && apt-get install -y libssl-dev libxml2-dev libxslt1-dev zlib1g-dev python-dev python-pybloomfiltermmap ; /opt/w3af/w3af_console ; bash /tmp/w3af_dependency_install.sh
+
 # ngrok
 RUN curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip | gunzip - > /usr/bin/ngrok
 RUN chmod +x /usr/bin/ngrok
