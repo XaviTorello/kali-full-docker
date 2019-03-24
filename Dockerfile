@@ -13,7 +13,6 @@ RUN rm -fR /var/lib/apt/ && apt-get clean && apt-get update -y && apt-get instal
 
 # Some system tools
 RUN apt-get install -y git colordiff colortail unzip vim tmux xterm zsh curl telnet strace ltrace tmate less build-essential wget python3-setuptools python3-pip tor proxychains proxychains4 zstd net-tools bash-completion iputils-tracepath nodejs npm yarnpkg
-RUN updatedb
 
 # Oh-my-git!
 RUN git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && echo source ~/.oh-my-git/prompt.sh >> /etc/profile
@@ -44,6 +43,11 @@ RUN update-rc.d tor enable
 # Use random proxy chains / round_robin_chain for pc4
 RUN sed -i 's/^strict_chain/#strict_chain/g;s/^#random_chain/random_chain/g' /etc/proxychains.conf
 RUN sed -i 's/^strict_chain/#strict_chain/g;s/^round_robin_chain/round_robin_chain/g' /etc/proxychains4.conf
+
+# Update DB and clean'up!
+RUN updatedb && \
+    apt-get autoremove -y && \
+    apt-get clean 
 
 # Welcome message
 RUN echo "echo 'Kali full container!\n\n- If you need proxychains over Tor just activate tor service with:\n$ service tor start\n'" >> /etc/profile
