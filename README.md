@@ -15,6 +15,8 @@ Be patient, this will install all Kali tools (just for the first install, at ima
   - configured to provide a new IP every 10 seconds
     - configurable via `MaxCircuitDirtiness` at `/etc/tor/torrc`
 - [SecLists](https://github.com/danielmiessler/SecLists) at `/usr/share/seclists`
+- [code-server](https://github.com/codercom/code-server)
+  - a VSCode served at `tcp/8443`
 - [ngrok](http://ngrok.com)
 - python virtualenvs via `virtualenvwrapper`
   - projects placed at /`root/projects`
