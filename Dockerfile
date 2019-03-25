@@ -9,7 +9,8 @@ ENV TERM xterm-256color
 RUN rm -fR /var/lib/apt/ && \
     apt-get clean && \
     apt-get update -y && \
-    apt-get install -y software-properties-common kali-linux-full --fix-missing 
+    apt-get install -y software-properties-common kali-linux-full --fix-missing && \
+    echo 'VERSION_CODENAME=kali-rolling' >> /etc/os-release
 
 # Add NodeJS repo
 # RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
