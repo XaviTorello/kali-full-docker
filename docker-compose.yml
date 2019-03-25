@@ -6,3 +6,5 @@ services:
       - NET_ADMIN
     stdin_open: true
     tty: true
+    ports:
+      - "8443:8443"
