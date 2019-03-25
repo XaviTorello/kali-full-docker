@@ -34,6 +34,7 @@ Be patient, this will install all Kali tools (just for the first install, at ima
   - python3-setuptools python3-pip
   - bash-completion
   - oh-my-git integration
+  - nodejs, npm and yarn
 
   
 ## Usage
