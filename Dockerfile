@@ -21,14 +21,14 @@ RUN git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && ec
 RUN git clone https://github.com/danielmiessler/SecLists /usr/share/seclists
 
 # w3af
-RUN git clone https://github.com/andresriancho/w3af.git /opt/w3af && apt-get install -y libssl-dev libxml2-dev libxslt1-dev zlib1g-dev python-dev python-pybloomfiltermmap ; /opt/w3af/w3af_console ; bash /tmp/w3af_dependency_install.sh ; export PATH=/opt/w3af:$PATH >> /etc/profile
+RUN git clone https://github.com/andresriancho/w3af.git /opt/w3af && apt-get install -y libssl-dev libxml2-dev libxslt1-dev zlib1g-dev python-dev python-pybloomfiltermmap ; /opt/w3af/w3af_console ; bash /tmp/w3af_dependency_install.sh ; echo 'export PATH=/opt/w3af:$PATH' >> /etc/profile
 
 # ngrok
 RUN curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip | gunzip - > /usr/bin/ngrok
 RUN chmod +x /usr/bin/ngrok
 
 # code-server
-RUN mkdir -p /opt/code-server && curl -Ls https://api.github.com/repos/codercom/code-server/releases/latest  | grep "browser_download_url.*linux" | cut -d ":" -f 2,3 | tr -d \"  | xargs curl -Ls | tar xz -C /opt/code-server --strip 1 && export PATH=/opt/code-server:$PATH >> /etc/profile
+RUN mkdir -p /opt/code-server && curl -Ls https://api.github.com/repos/codercom/code-server/releases/latest  | grep "browser_download_url.*linux" | cut -d ":" -f 2,3 | tr -d \"  | xargs curl -Ls | tar xz -C /opt/code-server --strip 1 && echo 'export PATH=/opt/code-server:$PATH' >> /etc/profile
 
 # virtualenv config
 RUN pip install virtualenvwrapper
