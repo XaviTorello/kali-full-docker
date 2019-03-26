@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker-compose run --rm kali
+docker-compose run --rm --service-ports kali
