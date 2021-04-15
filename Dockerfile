@@ -1,4 +1,4 @@
-FROM kalilinux/kali-linux-docker:latest
+FROM kalilinux/kali:latest
 
 MAINTAINER Xavi Torelló <info@xaviertorello.cat>
 
