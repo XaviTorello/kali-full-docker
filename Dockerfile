@@ -1,6 +1,7 @@
-FROM kalilinux/kali-linux-docker:latest
+FROM kalilinux/kali-rolling:latest
 
-MAINTAINER Xavi Torelló <info@xaviertorello.cat>
+LABEL maintainer="info@xaviertorello.cat"
+LABEL author="Xavi Torelló"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM xterm-256color
@@ -9,11 +10,11 @@ ENV TERM xterm-256color
 RUN rm -fR /var/lib/apt/ && \
     apt-get clean && \
     apt-get update -y && \
-    apt-get install -y software-properties-common kali-linux-full --fix-missing && \
+    apt-get install -y software-properties-common kali-linux-headless --fix-missing && \
     echo 'VERSION_CODENAME=kali-rolling' >> /etc/os-release
 
 # Add NodeJS repo
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
 # Some system tools
 RUN apt-get install -y git colordiff colortail unzip vim tmux xterm zsh curl telnet strace ltrace tmate less build-essential wget python3-setuptools python3-pip tor proxychains proxychains4 zstd net-tools bash-completion iputils-tracepath nodejs npm yarnpkg
